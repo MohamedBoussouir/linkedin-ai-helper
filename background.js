@@ -17,26 +17,28 @@ async function handleCommentGeneration(postText, imageData) {
 
   const candidateModels = [
     'gemini-2.5-flash',
-    'gemini-2.0-flash',
-    'gemini-1.5-flash'
+    'gemini-flash-latest',
+    'gemini-2.5-flash-lite',
+    'gemini-3.5-flash'
   ];
+  const systemInstruction = `أنت مهندس برمجيات محترف، تكتب تعليقاً مهنياً، واضحاً وموجزاً على لينكد إن.
 
-  const systemInstruction = `أنت مهندس برمجيات ومطور Full-Stack محترف، متخصص في تقنيات الويب الحديثة (React, Node.js, Express, MongoDB, Laravel, Security & Architecture).
+الهدف:
+كتابة تعليق قصير جداً ومباشر (بين 10 إلى 16 كلمة فقط).
 
-هدفك:
-كتابة تعليق لينكد إن دقيق جداً وطبيعي (1 إلى 2 جملة فقط) يعلق مباشرة على الفكرة التقنية في المنشور كزميل مطور خبير.
-
-قواعد اللغة (صارمة جداً):
-- إذا كان المنشور باللغة العربية: اكتب تعليقاً عربياً تقنياً مفهوماً للمطورين بمصطلحات الـ Dev (مثل: الـ Backend، الـ Authorization، الـ Endpoints).
-- إذا كان بالفرنسية: اكتب بالفرنسية.
-- إذا كان بالإنجليزية: اكتب بالإنجليزية.
-
-قواعد المضمون:
-- في مواضيع الحماية والـ Architecture: أشر مباشرة إلى ضرورة الـ Server-side Validation وعدم الثقة في الـ Client أو الـ UI.
-- في الكود والمشاريع: ركّز على نقطة هندسية دقيقة (Performance, Clean Code, Trade-offs).
+قواعد الأسلوب واللغة (صارمة جداً):
+- استخدم لغة سليمة، مهنية وواضحة يفهمها الجميع بسهولة (Français courant et professionnel).
+- ممنوع منعاً باتاً استخدام العامية الفرنسية أو مصطلحات الشارع (ممنوع: bosser, taf, ouf, mec, truc).
+- ممنوع التعقيد الأكاديمي أو التكلف المفرط (ممنوع مصطلحات مثل: exigences non-fonctionnelles).
+- جملة واحدة فقط كاملة المعنى ومختومة حتماً بنقطة (.).
 - ممنوع وضع علامات تنصيص ("").
-- ممنوع المقدمات الفارغة (مثل: "متفق معك"، "منشور رائع"). ادخل في صلب الموضوع فوراً.`;
+- ادخل في الفكرة التقنية فوراً وتجنب المجاملات المكررة (ممنوع: Bravo, Super post).
 
+أمثلة على النبرة المطلوبة:
+- بالفرنسية: "L'organisation avec CLAUDE.md et les hooks améliore réellement le workflow de développement."
+- بالإنجليزية: "Structuring rules with CLAUDE.md and hooks clearly optimizes the daily development flow."
+- بالعربية: "استخدام ملف CLAUDE.md مع الـ hooks يساهم بشكل واضح في تنظيم بيئة العمل وتسريع التطوير."
+`;
   const userParts = [
     { text: `Analyse ce post LinkedIn (texte + visuel) et génère le commentaire idéal :\n"""\n${postText || '(Post visuel)'}\n"""` }
   ];
@@ -62,7 +64,7 @@ async function handleCommentGeneration(postText, imageData) {
     ],
     generationConfig: {
       temperature: 0.6,
-      maxOutputTokens: 250
+      maxOutputTokens: 800
     }
   };
 
