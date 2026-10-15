@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 280px; font-family: system-ui, -apple-system, sans-serif; padding: 14px; margin: 0; background: #f8fafc; }
+    h3 { margin: 0 0 10px 0; color: #0a66c2; font-size: 15px; }
+    label { font-size: 12px; font-weight: 600; color: #334155; display: block; margin-bottom: 4px; }
+    input { width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; margin-bottom: 10px; }
+    button { width: 100%; padding: 8px; background: #0a66c2; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    button:hover { background: #004182; }
+    .status { font-size: 11px; color: #16a34a; text-align: center; margin-top: 6px; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <h3>LinkedIn AI Assistant</h3>
+  <label for="geminiKey">Gemini Flash API Key:</label>
+  <input type="password" id="geminiKey" placeholder="الصق المفتاح هنا">
+  <button id="saveBtn">حفظ المفتاح</button>
+  <div id="status" class="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
